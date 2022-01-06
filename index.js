@@ -10,7 +10,10 @@ app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(cors());
 
 app.post('/forms', (req, res) => {
-    console.log(req.body)
+    if(!process.env.EMAIL || !process.env.PASSWORD){
+        res.status(400).send();
+    }
+
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
