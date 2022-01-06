@@ -31,6 +31,7 @@ app.post('/forms', (req, res) => {
     transporter.sendMail(mailData, function (err, info) {
             if(err){
               console.log(err)
+              res.status(400).send(err);
             } else{
               console.log(info);
               res.status(200).send();
