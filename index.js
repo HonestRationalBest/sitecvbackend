@@ -26,10 +26,12 @@ app.post('/forms', (req, res) => {
         text: req.body.projectType + ". " + req.body.project,
     };
     transporter.sendMail(mailData, function (err, info) {
-            if(err)
+            if(err){
               console.log(err)
-            else
+            } else{
               console.log(info);
+              res.status(200).send();
+            }
     });
 })
 
